@@ -1,8 +1,8 @@
 const util = require("util");
 const jsonBody = util.promisify(require("body/json"));
 const Sequelize = require("sequelize");
-const Storage = require("./src/storage/");
-const { store: opt } = require("./configs/");
+const Storage = require("../../src/storage/");
+const { store: opt } = require("../../configs/");
 
 let store = null;
 

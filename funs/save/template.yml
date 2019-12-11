@@ -8,10 +8,12 @@ Resources:
     bitmap-fun:
       Type: 'Aliyun::Serverless::Function'
       Properties:
-        Handler: index.handler
-        Initializer: index.initializer
+        Handler: funs/save/index.save
+        Initializer: funs/save/index.initializer
         Runtime: nodejs10
-        CodeUri: './'
+        CodeUri: '../../'
+        EnvironmentVariables:
+          NODE_ENV: production
       Events:
         httpTrigger:
           Type: HTTP
