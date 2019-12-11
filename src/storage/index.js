@@ -37,7 +37,13 @@ function Storage(sequelize) {
    * @param {string} userId 所属用户ID
    * @return {Promise.[<log>]} 返回对应触发日志
    */
-  const list = userId => Log.findAll({ where: { userId } });
+  const list = (userId, params) => {
+    const where = { userId };
+    const order = [["createdAt", "DESC"]];
+    const offset = Math.min(5000, Math.max(params.$offset | 0, 0));
+    const limit = Math.min(100, Math.max(params.$limit | 0, 1));
+    return Log.findAll({ where, order, offset, limit });
+  };
 
   /**
    * 添加一条记录

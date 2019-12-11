@@ -20,6 +20,21 @@ Resources:
           Properties:
             AuthType: ANONYMOUS
             Methods: ['GET']
+    list:
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: index.list
+        Initializer: index.initializer
+        Runtime: nodejs10
+        CodeUri: './'
+        EnvironmentVariables:
+          NODE_ENV: production
+      Events:
+        httpTrigger:
+          Type: HTTP
+          Properties:
+            AuthType: ANONYMOUS
+            Methods: ['GET']
     save:
       Type: 'Aliyun::Serverless::Function'
       Properties:

@@ -18,7 +18,6 @@ module.exports.initializer = async (context, callback) => {
 module.exports.item = async (req, resp, context) => {
   resp.setHeader("Content-Type", "Application/json");
 
-  console.log(JSON.stringify(context, null, 2));
   const id = req.queries.id;
 
   try {
@@ -31,13 +30,26 @@ module.exports.item = async (req, resp, context) => {
   }
 };
 
+module.exports.list = async (req, resp, context) => {
+  resp.setHeader("Content-Type", "Application/json");
+
+  const uid = req.headers["x-auth-uuid"];
+
+  try {
+    const ls = await store.list(uid, req.queries);
+    resp.setStatusCode(200);
+    resp.send(JSON.stringify(ls));
+  } catch (e) {
+    resp.setStatusCode(500);
+    resp.send(e.message);
+  }
+};
+
 module.exports.save = async (req, resp, context) => {
   resp.setHeader("Content-Type", "Application/json");
 
   const uid = req.headers["x-auth-uuid"];
   const { red, green, blue } = await jsonBody(req);
-
-  console.log(JSON.stringify(context, null, 2));
 
   try {
     const log = await store.add(red, green, blue, uid);
