@@ -1,0 +1,37 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Transform: 'Aliyun::Serverless-2018-04-03'
+Resources:
+  bitmap-fun:
+    Type: 'Aliyun::Serverless::Service'
+    Properties:
+      Description: 'bitmap.funs'
+    item:
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: index.item
+        Initializer: index.initializer
+        Runtime: nodejs10
+        CodeUri: './'
+        EnvironmentVariables:
+          NODE_ENV: production
+      Events:
+        httpTrigger:
+          Type: HTTP
+          Properties:
+            AuthType: ANONYMOUS
+            Methods: ['GET']
+    save:
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: index.save
+        Initializer: index.initializer
+        Runtime: nodejs10
+        CodeUri: './'
+        EnvironmentVariables:
+          NODE_ENV: production
+      Events:
+        httpTrigger:
+          Type: HTTP
+          Properties:
+            AuthType: ANONYMOUS
+            Methods: ['POST']
