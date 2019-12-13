@@ -58,7 +58,7 @@ function Storage(sequelize) {
    * @return {Promise.<log>} 返回添加的记录
    */
   const add = (red, green, blue, code, userId) =>
-    Log.create({ id: random(16), red, green, blue, userId });
+    Log.create({ id: random(16), red, green, blue, code, userId });
 
   /**
    * 初始化存储
