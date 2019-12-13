@@ -22,8 +22,18 @@ module.exports.item = async (req, resp, context) => {
 
   try {
     const log = await store.item(id);
-    resp.setStatusCode(200);
-    resp.send(JSON.stringify(log));
+    if (!log) {
+      resp.setStatusCode(404);
+      resp.send(
+        JSON.stringify({
+          code: "ResourceNotFound",
+          message: "Resource not found."
+        })
+      );
+    } else {
+      resp.setStatusCode(200);
+      resp.send(JSON.stringify(log));
+    }
   } catch (e) {
     resp.setStatusCode(500);
     resp.send(e.message);
