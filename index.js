@@ -59,10 +59,10 @@ module.exports.save = async (req, resp, context) => {
   resp.setHeader("Content-Type", "Application/json");
 
   const uid = req.headers["x-auth-uuid"];
-  const { red, green, blue } = await jsonBody(req);
+  const { code, red, green, blue } = await jsonBody(req);
 
   try {
-    const log = await store.add(red, green, blue, uid);
+    const log = await store.add(red, green, blue, code, uid);
     resp.setStatusCode(201);
     resp.send(JSON.stringify(log));
   } catch (e) {

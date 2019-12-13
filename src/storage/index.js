@@ -53,10 +53,11 @@ function Storage(sequelize) {
    * @param {string} red 红色函数主体
    * @param {string} green 绿色函数主体
    * @param {string} blue 蓝色函数主体
+   * @param {string} code 蓝色函数主体
    * @param {string} userId 所属用户ID
    * @return {Promise.<log>} 返回添加的记录
    */
-  const add = (red, green, blue, userId) =>
+  const add = (red, green, blue, code, userId) =>
     Log.create({ id: random(16), red, green, blue, userId });
 
   /**

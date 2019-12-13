@@ -24,6 +24,10 @@ module.exports = sequelize => {
       blue: {
         type: Sequelize.TEXT,
         comment: "蓝色函数主体"
+      },
+      code: {
+        type: Sequelize.TEXT,
+        comment: "v2 code"
       }
     },
     {
